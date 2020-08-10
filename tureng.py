@@ -1,8 +1,5 @@
 import requests
 from bs4 import BeautifulSoup as bs
-import discord
-from discord.ext import commands
-
 
 def en_tr():
     tables = soup.find_all('table', {'class': 'table table-hover table-striped searchResultsTable'})
