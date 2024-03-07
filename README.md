@@ -1,4 +1,4 @@
-Simple web-scraper bot made by BeautifulSoup and cloudscraper to translate words via tureng.com.
+Simple web-scraper bot with Python to translate words via tureng.com.
 
 requirements:
 
