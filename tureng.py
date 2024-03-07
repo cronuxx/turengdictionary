@@ -1,5 +1,5 @@
-import requests
 from bs4 import BeautifulSoup as bs
+import cloudscraper
 
 def en_tr():
     tables = soup.find_all('table', {'class': 'table table-hover table-striped searchResultsTable'})
@@ -61,12 +61,18 @@ def tr_en():
             else:
                 print(f'{category[1].text} - {a[1].text}')
 while True: 
-    url = input('Word: ')
-    r = requests.get(f'https://tureng.com/tr/turkce-ingilizce/{url}')
-    soup = bs(r.content,'html.parser')
+    word = input('Word: ')
+
+    scraper = cloudscraper.create_scraper(delay=10, browser='chrome') 
+    url = f"https://tureng.com/tr/turkce-ingilizce/{word}"
+
+    info = scraper.get(url).text
+
+    soup = bs(info, "html.parser")
+
 
     if soup.find("h1").text == "Sanırız yanlış oldu, doğrusu şunlar olabilir mi?":
-            print(f'There is no such thing as a {url}.')
+            print(f'There is no such thing as a {word}.')
             
     else:
             language = input('en_TR - tr_EN: ')
